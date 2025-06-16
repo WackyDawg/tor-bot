@@ -9,7 +9,7 @@ const {
 } = require("./bot");
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 7860;
 
 // Run bot on server start
 app.get("/start", async (req, res) => {

@@ -25,6 +25,9 @@ WORKDIR /usr/src/app/tor-bot
 # Install dependencies
 RUN npm install
 
+# EXPOSE the port your app runs on
+EXPOSE 7860
+
 # OPTIONAL: Switch back to default non-root user (puppeteer uses this)
 USER pptruser
 
