@@ -20,7 +20,7 @@ class TorRunner extends EventEmitter {
 
   getTorPath() {
     if (PLATFORM === "linux") {
-      fs.chmodSync(TOR_PATHS.linux, 0o755); // Ensure executable permission
+      // fs.chmodSync(TOR_PATHS.linux, 0o755); // Ensure executable permission
       return TOR_PATHS.linux;
     } else if (PLATFORM === "win32") {
       return TOR_PATHS.win32;
