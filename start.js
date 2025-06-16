@@ -1,12 +1,8 @@
-require("dotenv").config();
-const express = require("express");
-const { Client, GatewayIntentBits } = require("discord.js");
+import "dotenv/config";
+import express from "express";
+import { Client, GatewayIntentBits } from "discord.js";
 
-const {
-  runBot,
-  stopBot,
-  takeScreenshotAndSendToDiscord,
-} = require("./bot");
+import { runBot, stopBot, takeScreenshotAndSendToDiscord } from "./bot.js";
 
 const app = express();
 const PORT = process.env.PORT || 7860;
@@ -19,6 +15,10 @@ app.get("/start", async (req, res) => {
   } catch (err) {
     res.status(500).send("❌ Failed to start bot: " + err.message);
   }
+});
+
+app.get("/", async (req, res) => {
+  res.send("🤖 Bot is running");
 });
 
 // Stop bot
@@ -64,5 +64,9 @@ discordClient.on("messageCreate", async (message) => {
   }
 });
 
-const token = process.env.DISCORD_BOT_TOKEN.replace(/\+/g, '');
+const token = process.env.DISCORD_BOT_TOKEN?.replace(/\+/g, "");
+if (!token) {
+  console.error("❌ DISCORD_BOT_TOKEN is not set in .env");
+  process.exit(1);
+}
 discordClient.login(token);
