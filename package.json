@@ -2,7 +2,7 @@
   "name": "money-bot",
   "version": "1.0.0",
   "main": "index.js",
-  "type": "common",
+  "type": "module",
   "scripts": {
     "start": "",
     "test": "echo \"Error: no test specified\" && exit 1"
