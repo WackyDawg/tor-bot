@@ -34,9 +34,17 @@ module.exports = class TorRunner extends EventEmitter {
     }
 
     _loadLinux() {
-        fs.chmodSync(LINUX_PATH, 0o754);
+        try {
+            if (process.getuid && process.getuid() === 0) {
+                fs.chmodSync(LINUX_PATH, 0o754);
+            }
+        } catch (err) {
+            console.warn('⚠️ Skipped chmod on Linux Tor binary:', err.message);
+        }
+    
         this._filePath = LINUX_PATH;
     }
+    
 
     _loadWindows() {
         this._filePath = WINDOWS_PATH;
