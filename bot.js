@@ -13,7 +13,7 @@ async function runBot() {
   try {
     await new Promise((resolve) => {
       onionProxy.startTorProxy(async () => {
-        console.log("✅ Tor proxy started");
+        console.log(" Tor proxy started");
         resolve();
       });
     });
@@ -64,16 +64,16 @@ async function runBot() {
 
     await page.reload({ waitUntil: ["networkidle2", "domcontentloaded"] });
 
-    console.log("🎯 Page loaded and prepared");
+    console.log(" Page loaded and prepared");
   } catch (err) {
-    console.error("❌ Error during bot run:", err.message);
+    console.error(" Error during bot run:", err.message);
   }
 }
 
 async function stopBot() {
   if (browser) await browser.close();
   onionProxy.stopTorProxy();
-  console.log("🛑 Browser closed and Tor stopped");
+  console.log("Browser closed and Tor stopped");
 }
 
 async function takeScreenshotAndSendToDiscord() {
@@ -89,9 +89,9 @@ async function takeScreenshotAndSendToDiscord() {
     await axios.post(WEBHOOK_URL, form, {
       headers: form.getHeaders(),
     });
-    console.log("✅ Screenshot sent to Discord");
+    console.log("Screenshot sent to Discord");
   } catch (err) {
-    console.error("❌ Failed to send screenshot:", err.message);
+    console.error("Failed to send screenshot:", err.message);
   } finally {
     fs.unlinkSync(screenshotPath);
   }
